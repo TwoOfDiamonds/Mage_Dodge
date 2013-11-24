@@ -17,6 +17,12 @@ void VisualObjectManager::Insert(VisualObject *item)
 	sprites.push_back(item);
 }
 
+
+void VisualObjectManager::Insert(VisualObject *vo, int index)
+{
+	sprites.insert(sprites.begin() + index, vo);
+}
+
 //delete an item found by string key from the sprites map
 void VisualObjectManager::Remove(int index)
 {
@@ -44,6 +50,7 @@ void VisualObjectManager::DrawAll(sf::RenderWindow &window)
 	{
 		it->Draw(window);
 	}
+
 }
 
 void VisualObjectManager::UpdateAll(sf::Event &event)
@@ -66,7 +73,7 @@ void VisualObjectManager::CheckVitals()
 
 		else
 		{
-			it++;
+			++it;
 		}
 	}
 }

@@ -32,7 +32,9 @@ void Game::Run()
 			GameRun(Event);
 			break;
 		case Game::Exit:
-			itemManager.Clear();
+			firstTeam.Clear();
+			secondTeam.Clear();
+			neutralTeam.Clear();
 			window.close();
 			break;
 		default:
@@ -41,16 +43,22 @@ void Game::Run()
 
 
 		//see if there is any object that needs deleted
-		itemManager.CheckVitals();
+		firstTeam.CheckVitals();
+		secondTeam.CheckVitals();
 		//update all existing objects
-		itemManager.UpdateAll(Event);
+		firstTeam.UpdateAll(Event);
+		secondTeam.UpdateAll(Event);
 
 		//clear the window
 		window.clear();
 
 		//draw all existing objects
 		if (window.isOpen())
-			itemManager.DrawAll(window);
+		{
+			neutralTeam.DrawAll(window);
+			firstTeam.DrawAll(window);
+			secondTeam.DrawAll(window);
+		}
 		//draw the buffer
 		window.display();
 	}
@@ -67,7 +75,7 @@ void Game::Initialize()
 	splash = new Splashscreen();
 
 	//put the splashscreen into the item manager
-	itemManager.Insert(splash);
+	neutralTeam.Insert(splash);
 
 	//set the current phase of the game to splash screen
 	curPhase = Game::SplashScreen;
@@ -80,13 +88,13 @@ void Game::GameSplash(sf::Event &Event)
 {
 	while (window.pollEvent(Event))
 	{
-		std::cout << "gamesplash\n";
+		//std::cout << "gamesplash\n"; //debug line
 
 		//at any key press close the splashscreen
-		if (Event.type == sf::Event::KeyPressed)
+		if (Event.type == sf::Event::KeyPressed || Event.type == sf::Event::MouseButtonPressed)
 		{
 			//delete the splash from item manager
-			itemManager.Clear();
+			neutralTeam.Clear();
 
 			//initialize the game
 			GameInit();
@@ -104,8 +112,8 @@ void Game::GameInit()
 	player = new Mage();
 
 	//insert them into item manager
-	itemManager.Insert(background);
-	itemManager.Insert(player);
+	neutralTeam.Insert(background);
+	firstTeam.Insert(player);
 }
 
 //handling 1player game
@@ -116,8 +124,14 @@ void Game::GameRun(sf::Event &Event)
 		switch (Event.key.code)
 		{
 		case sf::Keyboard::Escape:
-			itemManager.Clear();
 			curPhase = Game::Exit;
+			break;
+		case sf::Keyboard::Space:
+			if (player->canUseFireball())
+			{
+				MageFireball *fb = new MageFireball(player->getDirection(), player->getPosition());
+				firstTeam.Insert(fb, 0);
+			}
 		default:
 			break;
 		}
@@ -125,8 +139,8 @@ void Game::GameRun(sf::Event &Event)
 
 	if (fbManager.Maintain())
 	{
-		std::cout << "maintain true\n";
+		//std::cout << "maintain true\n"; //debug line
 		Fireball *fb = new Fireball(player);
-		itemManager.Insert(fb);
+		secondTeam.Insert(fb);
 	}
 }

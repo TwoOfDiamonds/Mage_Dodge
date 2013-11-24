@@ -32,7 +32,7 @@ VisualObject::VisualObject(std::string filename)
 //destructor
 VisualObject::~VisualObject()
 {
-	std::cout << "object destructed" << std::endl;
+	//std::cout << "object destructed" << std::endl; //debug line
 
 	//if there is a dynamically assigned texture release the memory
 	if (texture != NULL)

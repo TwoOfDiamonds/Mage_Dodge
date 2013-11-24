@@ -1,6 +1,5 @@
 #include "Mage.h"
 
-
 //constructor
 Mage::Mage()
 {
@@ -8,10 +7,10 @@ Mage::Mage()
 	source.x = 1;
 	source.y = Down;
 
-	CDFireball.restart();
+	//making all skills initially available
+	CDfireball.setAddTime(29);
 
-	//dynamically allocate the object manager
-	MageSkills = new VisualObjectManager();
+	/*MageSkills.Clear();*/
 
 	//setting the frame-rates
 	frameCounter = 0;
@@ -41,7 +40,6 @@ Mage::Mage()
 Mage::~Mage()
 {
 	std::cout << "mage destructor\n";
-	delete MageSkills;
 }
 
 //updating mage 
@@ -108,21 +106,49 @@ void Mage::Update(sf::Event &event)
 	if (hPoints <= 0)
 		Alive = false;
 
-	if (CDFireball.getElapsedTime().asSeconds() >= 30 && sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && canUseFireball())
 	{
-		MageFireball *fb = new MageFireball();
-		MageSkills->Insert
-	}
+		MageFireball *fb = new MageFireball(source.y, sprite->getPosition());
+		MageSkills.Insert(fb);
+	}*/
+
+	/*MageSkills.CheckVitals();*/
+
+	//MageSkills.UpdateAll(event);
+
 }
 
 void Mage::Hit(int dmg)
 {
-	//hPoints -= dmg;
+	hPoints -= dmg;
 }
 
-void Mage::FireFireball()
+
+void Mage::Draw(sf::RenderWindow &window)
 {
-	
-	MageFireball *fb = new MageFireball();
-	MageSkills->Insert(fb);
+	if (sprite != NULL)
+		window.draw(*sprite);
+
+	/*MageSkills.DrawAll(window);*/
+}
+
+bool Mage::canUseFireball()
+{
+	if (CDfireball.getTime() >= 30)
+	{
+		CDfireball.restart();
+		return true;
+	}
+
+	return false;
+}
+
+int Mage::getDirection()
+{
+	return source.y;
+}
+
+sf::Vector2f Mage::getPosition()
+{
+	return sprite->getPosition();
 }

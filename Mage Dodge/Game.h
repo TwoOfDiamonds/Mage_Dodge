@@ -49,7 +49,7 @@ private:
 	//fireball manager
 	FireballManager fbManager;
 	//object manager
-	VisualObjectManager itemManager;
+	VisualObjectManager firstTeam, secondTeam, neutralTeam;
 
 };
 

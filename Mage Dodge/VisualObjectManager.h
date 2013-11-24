@@ -14,6 +14,7 @@ public:
 
 	//insert visualobject into the sprites map (key, item to be added)
 	void Insert(VisualObject *item);
+	void Insert(VisualObject *item, int index); //insert at a certain position
 
 	//delete a single visualobject from the sprites map (by key)
 	void Remove(int index);

@@ -21,6 +21,7 @@ bool FireballManager::Maintain()
 		frameCount = 0;
 		if (Fireball::numberOfFb < MAX_FBS)
 		{
+			std::cout << Fireball::numberOfFb << std::endl;
 			return true;
 		}
 	}
