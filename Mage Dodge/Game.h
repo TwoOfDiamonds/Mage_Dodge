@@ -6,6 +6,7 @@
 #include "Background.h"
 #include "VisualObjectManager.h"
 #include "FireballManager.h"
+#include "Mouse.h"
 
 class Game
 {
@@ -44,6 +45,8 @@ private:
 	Background *background;
 	//mage
 	Mage *player;
+	//mouse
+	Mouse *mouse;
 
 
 	//fireball manager

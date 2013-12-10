@@ -8,6 +8,10 @@ BasicFireball(BasicFireball::Colors::Pink)
 
 	//store the direction at which the casting mage is looking
 	dir = (Directions)direction;
+
+	//set Health Points and Damage of the fireballs shot by the mage
+	HP = 10;
+	Damage = 10;
 	
 	//set the initial position of the fireball depending on the direction it has
 	if (dir == Up)
@@ -49,6 +53,7 @@ MageFireball::~MageFireball()
 void MageFireball::Update(sf::Event &event)
 {
 	BasicFireball::Update(event);
+	LivingObject::Update(event);
 	   
 	std::cout << sprite->getPosition().x << " " << sprite->getPosition().y << std::endl; //debug line
 }

@@ -77,3 +77,19 @@ void VisualObjectManager::CheckVitals()
 		}
 	}
 }
+
+void VisualObjectManager::CollideAll(VisualObjectManager *vom, VisualObjectManager *second)
+{
+	for (auto &it : vom->sprites)
+	{
+		for (auto &it2 : second->sprites)
+		{
+			if (VisualObject::Collide(it, it2))
+			{
+				//std::cout << "they should hit !!!" << std::endl; //debug line
+				it2->Hit(it->getDmg());
+				it->Hit(it2->getDmg());
+			}
+		}
+	}
+}

@@ -1,9 +1,9 @@
 #pragma once
 
-#include "VisualObject.h"
+#include "DeadObject.h"
 
 class Splashscreen :
-	public VisualObject
+	public DeadObject
 {
 public:
 	Splashscreen();

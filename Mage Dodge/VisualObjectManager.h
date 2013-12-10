@@ -30,6 +30,8 @@ public:
 	//return to see if there is still a point in playing the game (e.g. the player died)
 	void CheckVitals();
 
+	static void CollideAll(VisualObjectManager *vom, VisualObjectManager *vomSecond);
+
 private:
 	std::vector<VisualObject*> sprites;
 };

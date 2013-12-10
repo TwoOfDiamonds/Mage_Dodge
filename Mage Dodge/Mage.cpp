@@ -18,7 +18,9 @@ Mage::Mage()
 	switchFrame = 50;
 
 	//HP
-	hPoints = 100;
+	HP = 100;
+	//no damage
+	Damage = 0;
 
 	//setting clock to 0
 	clock.restart();
@@ -103,8 +105,7 @@ void Mage::Update(sf::Event &event)
 	//select the correct texture portion
 	sprite->setTextureRect(sf::IntRect(source.x * FRAME_WIDTH, source.y * FRAME_HEIGHT, FRAME_WIDTH, FRAME_HEIGHT));
 
-	if (hPoints <= 0)
-		Alive = false;
+	LivingObject::Update(event);
 
 	/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && canUseFireball())
 	{
@@ -116,11 +117,6 @@ void Mage::Update(sf::Event &event)
 
 	//MageSkills.UpdateAll(event);
 
-}
-
-void Mage::Hit(int dmg)
-{
-	hPoints -= dmg;
 }
 
 

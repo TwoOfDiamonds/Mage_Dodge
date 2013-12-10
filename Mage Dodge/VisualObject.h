@@ -22,13 +22,20 @@ public:
 
 	virtual void Update(sf::Event &event);
 
+	virtual void Hit(int dmg) = 0;
+	virtual int getDmg() = 0;
+
 	bool getAlive();
+
+	static bool Collide(VisualObject *vo1, VisualObject *vo2);
+
 
 protected:
 	sf::Texture *texture; //texture
 	sf::Sprite *sprite; //sprite
 
-	bool Collide(sf::Sprite *spr1, sf::Sprite *spr2);
+	//check collisions between 2 sprites or 2 visual objects 
+	static bool Collide(sf::Sprite *spr1, sf::Sprite *spr2);
 
 	bool Alive;
 };

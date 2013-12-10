@@ -1,13 +1,13 @@
 #pragma once
 
-#include "VisualObject.h"
+#include "LivingObject.h"
 #include <SFML/Graphics.hpp>
 
 #define FRAME_WIDTH 32
 #define FRAME_HEIGHT 32
 
 class BasicFireball :
-	public VisualObject
+	public LivingObject
 {
 protected:
 	enum Directions { Down, Left, Right, Up }; //enumeration of possible directions

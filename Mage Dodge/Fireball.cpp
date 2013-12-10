@@ -10,6 +10,10 @@ BasicFireball(BasicFireball::Colors::Red)
 
 	dir = (Directions)(rand() % 4); //get a random direction for the fireball to go
 
+	//set the health points and damage of the map spawned fireballs
+	HP = 10;
+	Damage = 10;
+
 	//assign the pointer to the private variable pointer of type Mage
 	this->player = player;
 
@@ -58,10 +62,10 @@ Fireball::~Fireball()
 void Fireball::Update(sf::Event &Event)
 {
 	BasicFireball::Update(Event);
+	LivingObject::Update(Event);
 
 	if (Collide(sprite, player->sprite))
 	{
-		player->Hit(10);
 		Alive = false;
 	}
 

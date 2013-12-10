@@ -1,6 +1,6 @@
 #pragma once
 
-#include "VisualObject.h"
+#include "LivingObject.h"
 #include "VisualObjectManager.h"
 #include "Fireball.h"
 #include "MageFireball.h"
@@ -13,7 +13,7 @@ class VisualObjectManager;
 class CooldownClock;
 
 class Mage :
-	public VisualObject
+	public LivingObject
 {
 public:
 	enum Directions { Down, Left, Right, Up };
@@ -24,8 +24,6 @@ public:
 	void Update(sf::Event &event);
 
 	friend class Fireball;
-
-	void Hit(int dmg);
 
 	void Draw(sf::RenderWindow &window);
 
@@ -40,13 +38,6 @@ private:
 	//animation timer
 	//it makes the animation independent from the CPU
 	sf::Clock clock;
-	
-	//container of fireballs
-	//VisualObjectManager MageSkills;
-
-	//the current health points of the player
-	int hPoints;
-
 
 	//animation frame variables
 	float frameCounter, frameSpeed, switchFrame;

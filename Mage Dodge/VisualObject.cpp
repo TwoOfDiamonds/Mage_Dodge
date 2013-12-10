@@ -75,19 +75,35 @@ void VisualObject::Draw(sf::RenderWindow &window)
 		window.draw(*sprite);
 }
 
+//virtual update functions
 void VisualObject::Update(sf::Event &event)
 {
 }
 
+//is the object still usable or can it be deleted
 bool VisualObject::getAlive()
 {
 	return Alive;
 }
 
+//check collision of two sprites
+//static function
 bool VisualObject::Collide(sf::Sprite *spr1, sf::Sprite *spr2)
 {
+	//get rectangles of the sprites
 	sf::FloatRect rect1(spr1->getPosition().x, spr1->getPosition().y, spr1->getLocalBounds().width, spr1->getLocalBounds().height);
 	sf::FloatRect rect2(spr2->getPosition().x, spr2->getPosition().y, spr2->getLocalBounds().width, spr2->getLocalBounds().height);
 
+	//check if the rectangles interesect each other 
+	//if it does then the sprites collide
 	return rect1.intersects(rect2);
+}
+
+//check collision of two visual objects
+//static functions
+bool VisualObject::Collide(VisualObject *vo1, VisualObject *vo2)
+{
+
+	//check if the sprites of the objects collide 
+	return Collide(vo1->sprite, vo2->sprite);
 }

@@ -48,6 +48,9 @@ void Game::Run()
 		//update all existing objects
 		firstTeam.UpdateAll(Event);
 		secondTeam.UpdateAll(Event);
+		neutralTeam.UpdateAll(Event);
+		//check collisions between teams
+		VisualObjectManager::CollideAll(&firstTeam, &secondTeam);
 
 		//clear the window
 		window.clear();
@@ -70,12 +73,17 @@ void Game::Initialize()
 {
 	//creating the window
 	window.create(sf::VideoMode(800, 600, 32), "Mage Dodge", sf::Style::Titlebar);
+	window.setMouseCursorVisible(false);
+
+	//create new Mouse 
+	mouse = new Mouse();
 
 	//create a new splashscreen
 	splash = new Splashscreen();
 
-	//put the splashscreen into the item manager
+	//put the splashscreen and the mouse into the item manager
 	neutralTeam.Insert(splash);
+	neutralTeam.Insert(mouse);
 
 	//set the current phase of the game to splash screen
 	curPhase = Game::SplashScreen;
