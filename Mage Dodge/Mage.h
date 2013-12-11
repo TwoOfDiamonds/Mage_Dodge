@@ -5,6 +5,7 @@
 #include "Fireball.h"
 #include "MageFireball.h"
 #include "CooldownClock.h"
+#include "Stonewall.h"
 
 #define FRAME_WIDTH 40
 #define FRAME_HEIGHT 40
@@ -30,7 +31,7 @@ public:
 	int getDirection();
 	sf::Vector2f getPosition();
 
-	bool canUseFireball();
+	VisualObject* useSelectedSkill();
 
 private:
 	//the source portion from the texture
@@ -38,6 +39,14 @@ private:
 	//animation timer
 	//it makes the animation independent from the CPU
 	sf::Clock clock;
+
+	//skills that the mage can use
+	enum Skills { Fireballs, Stonewalls };
+
+	Skills selectedSkill; // the current selected skill
+
+	bool canUseFireball(); //checks if the mage can use the fireball skill
+	bool canUseStonewall(); //checks if the mage can use the stonewall skill
 
 	//animation frame variables
 	float frameCounter, frameSpeed, switchFrame;
@@ -48,4 +57,6 @@ private:
 	/*void FireFireball();*/
 	//fireball cooldown timer
 	CooldownClock CDfireball;
+	//stonewall cooldown timer
+	CooldownClock CDstonewall;
 };

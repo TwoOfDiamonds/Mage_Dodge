@@ -74,3 +74,8 @@ void BasicFireball::Update(sf::Event &event)
 		sprite->setTextureRect(sf::IntRect(source.x * FRAME_WIDTH, source.y * FRAME_HEIGHT, FRAME_WIDTH, FRAME_HEIGHT)); //set sprite rectangle from the texture
 	}
 }
+
+void BasicFireball::CollisionAction()
+{
+	Alive = false;
+}

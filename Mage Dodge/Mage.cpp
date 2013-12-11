@@ -8,7 +8,10 @@ Mage::Mage()
 	source.y = Down;
 
 	//making all skills initially available
-	CDfireball.setAddTime(29);
+	CDfireball.setAddTime(9);
+	CDstonewall.setAddTime(29);
+
+	selectedSkill = Skills::Stonewalls;
 
 	/*MageSkills.Clear();*/
 
@@ -130,9 +133,20 @@ void Mage::Draw(sf::RenderWindow &window)
 
 bool Mage::canUseFireball()
 {
-	if (CDfireball.getTime() >= 30)
+	if (CDfireball.getTime() >= 10)
 	{
 		CDfireball.restart();
+		return true;
+	}
+
+	return false;
+}
+
+bool Mage::canUseStonewall()
+{
+	if (CDstonewall.getTime() >= 30)
+	{
+		CDstonewall.restart();
 		return true;
 	}
 
@@ -147,4 +161,27 @@ int Mage::getDirection()
 sf::Vector2f Mage::getPosition()
 {
 	return sprite->getPosition();
+}
+
+VisualObject* Mage::useSelectedSkill()
+{
+	switch (selectedSkill)
+	{
+	case Mage::Fireballs:
+		if (canUseFireball())
+		{
+			MageFireball *fb = new MageFireball(getDirection(), getPosition());
+			return fb;
+		}
+		break;
+	case Mage::Stonewalls:
+		if (canUseStonewall())
+		{
+			Stonewall *sw = new Stonewall(getPosition());
+			return sw;
+		}
+		break;
+	default:
+		break;
+	}
 }

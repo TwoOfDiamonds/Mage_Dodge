@@ -9,6 +9,7 @@ public:
 protected:
 	void Hit(int dmg);
 	int getDmg();
+	void CollisionAction();
 protected:
 	//virtual void Update(sf::Event &event);
 };

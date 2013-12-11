@@ -27,6 +27,8 @@ public:
 
 	bool getAlive();
 
+	virtual void CollisionAction() = 0;
+
 	static bool Collide(VisualObject *vo1, VisualObject *vo2);
 
 

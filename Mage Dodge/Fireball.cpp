@@ -63,10 +63,4 @@ void Fireball::Update(sf::Event &Event)
 {
 	BasicFireball::Update(Event);
 	LivingObject::Update(Event);
-
-	if (Collide(sprite, player->sprite))
-	{
-		Alive = false;
-	}
-
 }

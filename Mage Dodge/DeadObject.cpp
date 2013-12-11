@@ -18,3 +18,8 @@ int DeadObject::getDmg()
 {
 	return 0;
 }
+
+void DeadObject::CollisionAction()
+{
+
+}

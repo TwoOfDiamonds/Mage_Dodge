@@ -135,11 +135,10 @@ void Game::GameRun(sf::Event &Event)
 			curPhase = Game::Exit;
 			break;
 		case sf::Keyboard::Space:
-			if (player->canUseFireball())
-			{
-				MageFireball *fb = new MageFireball(player->getDirection(), player->getPosition());
-				firstTeam.Insert(fb, 0);
-			}
+			VisualObject *mageskill;
+			mageskill = player->useSelectedSkill();
+			if (mageskill != NULL)
+				firstTeam.Insert(mageskill, 0);
 		default:
 			break;
 		}

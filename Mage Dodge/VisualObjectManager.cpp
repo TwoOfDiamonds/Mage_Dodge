@@ -89,6 +89,8 @@ void VisualObjectManager::CollideAll(VisualObjectManager *vom, VisualObjectManag
 				//std::cout << "they should hit !!!" << std::endl; //debug line
 				it2->Hit(it->getDmg());
 				it->Hit(it2->getDmg());
+				it->CollisionAction();
+				it2->CollisionAction();
 			}
 		}
 	}

@@ -14,7 +14,7 @@ protected:
 	enum Colors { Red, Pink }; //enumeration of possible colors (according to the function of the fireball)
 
 	BasicFireball(Colors); //constructor with specified color
-
+	void CollisionAction(); //what happens when fireballs collide
 	virtual void Update(sf::Event &event);
 
 protected:

@@ -25,3 +25,8 @@ void LivingObject::Update(sf::Event &event)
 	if (HP <= 0)
 		Alive = false;
 }
+
+void LivingObject::CollisionAction()
+{
+
+}
