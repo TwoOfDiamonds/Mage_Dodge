@@ -12,3 +12,7 @@ TODO:
 -implement experience system
 
 -implement more skills for each element
+
+-implement main menu
+
+-implement controller commands
