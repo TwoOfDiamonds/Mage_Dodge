@@ -1,7 +1,10 @@
 #include "BasicFireball.h"
 
 
-BasicFireball::BasicFireball(Colors cl)
+BasicFireball::BasicFireball(Colors cl) 
+:
+  frameSpeed(500)
+  ,switchFrame(37.5f)
 {
 	color = cl; //set to the selected color
 
@@ -10,9 +13,9 @@ BasicFireball::BasicFireball(Colors cl)
 
 	//load the correct texture according to the function of the object
 	if (color == Colors::Red)
-		LoadTexture("GFX//FireBall.png");
+		LoadTexture("GFX/FireBall.png");
 	else if (color == Colors::Pink)
-		LoadTexture("GFX//mageFB.png");
+		LoadTexture("GFX/mageFB.png");
 	
 	clock.restart(); // initialize clock
 

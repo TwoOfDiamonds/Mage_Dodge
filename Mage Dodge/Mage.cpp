@@ -29,7 +29,7 @@ Mage::Mage()
 	clock.restart();
 
 	//loading the spritesheet into memory
-	LoadTexture("GFX\\mage40.png");
+	LoadTexture("GFX/mage40.png");
 
 	//setting the sprite's texture according to the direction and the phase of movement
 	sprite->setTextureRect(sf::IntRect(source.x * FRAME_WIDTH, source.y * FRAME_HEIGHT, FRAME_WIDTH, FRAME_HEIGHT));

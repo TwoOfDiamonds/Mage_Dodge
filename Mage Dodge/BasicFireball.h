@@ -24,7 +24,7 @@ protected:
 	sf::Vector2i source; //surce texture coordinates
 	sf::Clock clock; //frame switch clock
 
-	const float frameSpeed = 500, switchFrame = 37.5f; //frame switch constants
+	float frameSpeed, switchFrame; //frame switch constants
 	float frameCounter; //frame counter
 
 	virtual ~BasicFireball(); //destructor
